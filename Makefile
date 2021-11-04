@@ -5,14 +5,14 @@
 all: build
 
 build:
-	docker build -t mpepping/cyberchef:latest .
+	docker build -t oexperts/cyberchef-base45:latest .
 
 clean:
-	docker rmi mpepping/cyberchef:latest
+	docker rmi oexperts/cyberchef-base45:latest
 
 start:
-	docker run -d --rm -p 8000:8000 --name cyberchef mpepping/cyberchef:latest
+	docker run -d --rm -p 8000:8000 --name cyberchef-base45 oexperts/cyberchef-base45:latest
 
 stop:
-	docker rm -f cyberchef
+	docker rm -f cyberchef-base45
 

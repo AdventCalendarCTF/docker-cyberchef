@@ -1,16 +1,17 @@
 FROM docker.io/node:10 as build
 LABEL maintainer='Martijn Pepping <martijn.pepping@automiq.nl>'
-ARG VERSION
+ARG VERSION=base45
+ARG REPO=https://github.com/AdventCalendarCTF/CyberChef.git
 
 RUN chown -R node:node /srv
 
 USER node
 WORKDIR /srv
 
-RUN git clone -b "$VERSION" --depth=1 https://github.com/gchq/CyberChef.git .
+RUN git clone -b "$VERSION" --depth=1 $REPO .
 RUN npm install
 
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+ENV NODE_OPTIONS="--max-old-space-size=8192"
 RUN npx grunt prod
 
 
